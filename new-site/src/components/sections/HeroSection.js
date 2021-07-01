@@ -1,15 +1,28 @@
 import React from "react"
 import styled from "styled-components"
+import PurchaseButton from "../buttons/PurchaseButton"
+import { themes } from "../styles/ColorStyles"
+import { H1, MediumText } from "../styles/TextStyles"
 
 function HeroSection() {
   return (
     <Wrapper>
       <ContentWrapper>
         <TextWrapper>
-          <Title>Hi people</Title>
+          <Title>
+            Survive
+            <br /> and Thrive
+          </Title>
           <Description>
-            Welcome to your new Gatsby site. What a day!
+            Hackers/AIs/Unkowns wait for no one. World around you has evolving
+            so quickly that without acute senses, one will easily gets lost in
+            the transition. Rather than passively defending yourself, better
+            prepare yourself for the tide that's coming at you!
           </Description>
+          <PurchaseButton
+            title="Start Digging"
+            subtitle="3 articles every week"
+          />
         </TextWrapper>
       </ContentWrapper>
     </Wrapper>
@@ -30,14 +43,12 @@ const ContentWrapper = styled.div`
 
 const TextWrapper = styled.div`
   max-width: 360px;
+  display: grid;
+  gap: 30px;
 `
 
-const Title = styled.h1`
-  font-weight: bold;
-  font-size: 60px;
+const Title = styled(H1)`
+  color: ${themes.dark.text1};
 `
 
-const Description = styled.p`
-  font-size: 17px;
-  line-height: 130%;
-`
+const Description = styled(MediumText)``

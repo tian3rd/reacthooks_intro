@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Design+Code`,
-    description: `A practice site within a week.`,
+    title: `Survive and Thrive`,
+    description: `A guide to the next 10 years; live with AIs`,
     author: `@Phi_W5`,
   },
   plugins: [
@@ -16,5 +16,6 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    `gatsby-plugin-styled-components`,
   ],
 }
