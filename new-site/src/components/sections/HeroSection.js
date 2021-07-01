@@ -7,7 +7,9 @@ function HeroSection() {
       <ContentWrapper>
         <TextWrapper>
           <Title>Hi people</Title>
-          <Description>Welcome to your new Gatsby site.</Description>
+          <Description>
+            Welcome to your new Gatsby site. What a day!
+          </Description>
         </TextWrapper>
       </ContentWrapper>
     </Wrapper>
