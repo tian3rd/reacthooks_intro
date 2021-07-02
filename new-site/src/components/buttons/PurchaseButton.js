@@ -9,7 +9,7 @@ export default function PurchaseButton(props) {
     <Link to="/page-2">
       <Wrapper>
         <IconWrapper>
-          <Icon src="/images/icons-part/credit.svg" />
+          <Icon src="/images/icons-part/credit.svg" className="icon" />
           <Ring src="/images/icons-part/icon-ring.svg" />
         </IconWrapper>
         <TextWrapper>
@@ -38,6 +38,25 @@ const Wrapper = styled.div`
   /* align-content: center; */
   align-items: center;
   gap: 20px;
+
+  /* apply transition to self and child elements */
+  *,
+  & {
+    /* transition, ease in and out */
+    transition: 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition-delay: 0.1s;
+  }
+  :hover {
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1),
+      0px 30px 60px rgba(23, 0, 102, 0.5),
+      inset 0px 0px 0px 0.5px rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px) scale(1.05);
+
+    /* corresponds to class name icon */
+    .icon {
+      transform: scale(1.3);
+    }
+  }
 `
 
 const Title = styled(Caption2)`
@@ -59,6 +78,11 @@ const Ring = styled.img`
   /* absolute vs IconWrappter relative, but how to calc exact pixels */
   top: -15px;
   left: -16px;
+
+  /* use $ to select pre-defined wrapper that has effect; & means self, * means child elements */
+  ${Wrapper}:hover & {
+    transform: rotate(15deg) scale(1.18) translate(1px, 1px);
+  }
 `
 
 const IconWrapper = styled.div`
@@ -74,6 +98,10 @@ const IconWrapper = styled.div`
   /* 45px vs 53px of parent assigned width, to center it */
   justify-self: center;
   position: relative;
+
+  ${Wrapper}:hover & {
+    filter: hue-rotate(10deg) brightness(120%) saturate(80%);
+  }
 `
 
 const TextWrapper = styled.div`
