@@ -3,6 +3,7 @@ import styled from "styled-components"
 import React from "react"
 import { menuData } from "../../data/menuData"
 import MenuButton from "../buttons/MenuButton"
+import MenuTooltip from "../tooltips/MenuTooltip"
 
 export default function Header() {
   return (
@@ -17,6 +18,8 @@ export default function Header() {
           <MenuButton item={item} key={index} />
         ))}
       </MenuWrapper>
+      {/* add tool to toggle states */}
+      <MenuTooltip />
     </Wrapper>
   )
 }
@@ -25,7 +28,7 @@ const Wrapper = styled.div`
   position: absolute;
   top: 60px;
   display: grid;
-  /* horizontally distributed */
+  /* horizontally distributed (only 2 are specified: 44px and auto)*/
   grid-template-columns: 44px auto;
   /* left to the left, right to the right */
   justify-content: space-between;

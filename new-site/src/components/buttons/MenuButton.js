@@ -30,6 +30,7 @@ const MenuItem = styled.div`
   /* to make the border consistent */
   border-radius: 10px;
 
+  /* apply background opacity when hovering */
   :hover {
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1),
