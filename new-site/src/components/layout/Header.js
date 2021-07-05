@@ -1,6 +1,6 @@
 import { Link } from "gatsby"
 import styled from "styled-components"
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { menuData } from "../../data/menuData"
 import MenuButton from "../buttons/MenuButton"
 import MenuTooltip from "../tooltips/MenuTooltip"
@@ -8,6 +8,10 @@ import MenuTooltip from "../tooltips/MenuTooltip"
 export default function Header() {
   // search useState for more uses
   const [isOpen, setIsOpen] = useState(false)
+  // prevent conflicts when clicking the hamburger itself (otherwise, it will open (handleClick) and close (handleClickOutside) )
+  const ref = useRef()
+  // fix when clicking inside the tooltip, it closes (add tooltipRef.current.contains to detect)
+  const tooltipRef = useRef()
 
   function handleClick(event) {
     setIsOpen(!isOpen)
@@ -16,6 +20,26 @@ export default function Header() {
     console.log(event)
   }
 
+  function handleClickOutside(event) {
+    if (
+      ref.current &&
+      !ref.current.contains(event.target) &&
+      !tooltipRef.current.contains(event.target)
+    ) {
+      console.log("D is clicked!" + ref.current)
+      setIsOpen(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside)
+
+    // remove event listener afterwards
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
+
   return (
     <Wrapper>
       {/* redirect logo to homepages */}
@@ -23,7 +47,8 @@ export default function Header() {
         <img src="/images/logos/logo.svg" alt="LOGO" />
       </Link>
       {/* here calc menu array length */}
-      <MenuWrapper count={menuData.length}>
+      {/* add ref */}
+      <MenuWrapper count={menuData.length} ref={ref}>
         {menuData.map((item, index) =>
           item.link === "/account" ? (
             // conflict with default behavior;
@@ -40,12 +65,18 @@ export default function Header() {
         )}
         <HamburgerWrapper>
           <MenuButton
-            item={{ title: "", icon: "/images/icons/hamburger.svg", link: "" }}
+            // gatsby prefers internal link: use '/' intead for empty link
+            item={{ title: "", icon: "/images/icons/hamburger.svg", link: "/" }}
+            // fix bug of hamburger not clickable by adding the onClick
+            onClick={event => handleClick(event)}
           />
         </HamburgerWrapper>
       </MenuWrapper>
-      {/* add tool to toggle states */}
-      <MenuTooltip isOpen={isOpen} />
+      {/* because MenuTooltip is a component (vs MenuWrapper), so it needs to be wrapped in a div for instance to pass the ref */}
+      <div ref={tooltipRef}>
+        {/* add tool to toggle states */}
+        <MenuTooltip isOpen={isOpen} />
+      </div>
     </Wrapper>
   )
 }
