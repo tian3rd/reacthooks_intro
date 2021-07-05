@@ -16,6 +16,7 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-    `gatsby-plugin-styled-components`,
+    // ISSUE: comment out gatsby-plugin-styled-components for now, as it will not develop (dependency issues?)
+    // `gatsby-plugin-styled-components`,
   ],
 }
