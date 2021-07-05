@@ -9,6 +9,7 @@ export default function PurchaseButton(props) {
     <Link to="/page-2">
       <Wrapper>
         <IconWrapper>
+          {/* 'className' is JavaScript name attribute instead of normal 'class' */}
           <Icon src="/images/icons-part/credit.svg" className="icon" />
           <Ring src="/images/icons-part/icon-ring.svg" />
         </IconWrapper>
@@ -30,12 +31,14 @@ const Wrapper = styled.div`
     0px 20px 40px rgba(23, 0, 102, 0.2),
     inset 0px 0px 0px 0.5px rgba(255, 255, 255, 0.5);
   border-radius: 20px;
-  /* set icon and text side by side */
+  /* set icon and text side by side: display -> grid;
+  and set grid-template-columns */
   display: grid;
   /* first column (icon) 53px; */
   grid-template-columns: 53px auto;
-  /* only align when child content is smaller than parent content*/
+  /* 1. align-content only aligns when child content is smaller than parent content*/
   /* align-content: center; */
+  /* 2. align-items will align multiple */
   align-items: center;
   gap: 20px;
 

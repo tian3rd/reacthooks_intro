@@ -7,6 +7,8 @@ export const themes = {
     backgroundColor: `#f2f6ff`,
     card: {
       backgroundColor: `rgba(255, 255, 255, 0.6)`,
+      // note: use inset 0 0 0 0.5px to set line width to achieve .5px;
+      // vs. normally setting to .5px width will round up to 1px;
       boxShadow: `0px 50px 100px rgba(34, 79, 169, 0.3),
         inset 0 0 0 0.5px rgba(255, 255, 255, 0.6)`,
       backgroundColorFull: `rgba(255, 255, 255, 1)`,
