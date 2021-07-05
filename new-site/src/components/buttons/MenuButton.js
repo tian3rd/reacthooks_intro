@@ -3,10 +3,11 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 
 export default function MenuButton(props) {
+  // anything passed to customized functions is treated as props, so instead of set onClick in Header.js with onClick in <MenuButton/>, set the onClick directly to the Link here
   const { item } = props
   return (
     // removed the key to original Header.js to be included in <MenuButton />
-    <Link to={item.link}>
+    <Link to={item.link} onClick={props.onClick}>
       {/* add title property, use {} to wrap it up */}
       <MenuItem title={item.title}>
         <img src={item.icon} alt={item.title} />

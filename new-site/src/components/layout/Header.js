@@ -9,6 +9,13 @@ export default function Header() {
   // search useState for more uses
   const [isOpen, setIsOpen] = useState(false)
 
+  function handleClick(event) {
+    setIsOpen(!isOpen)
+    // prevent default behavior and use the customized one
+    event.preventDefault()
+    console.log(event)
+  }
+
   return (
     <Wrapper>
       {/* redirect logo to homepages */}
@@ -23,7 +30,8 @@ export default function Header() {
             <MenuButton
               item={item}
               key={index}
-              onClick={() => setIsOpen(!isOpen)}
+              // pass it to the actual onClick link as props.onClick
+              onClick={event => handleClick(event)}
             />
           ) : (
             // map with key? (anytime you use the loop, you should set the key)
