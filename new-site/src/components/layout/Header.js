@@ -2,20 +2,19 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import React from "react"
 import { menuData } from "../../data/menuData"
+import MenuButton from "../buttons/MenuButton"
 
 export default function Header() {
   return (
     <Wrapper>
-      <img src="/images/logos/logo.svg" alt="LOGO" />
-      <MenuWrapper>
+      {/* redirect logo to homepages */}
+      <Link to="/">
+        <img src="/images/logos/logo.svg" alt="LOGO" />
+      </Link>
+      <MenuWrapper count={menuData.length}>
         {menuData.map((item, index) => (
-          // map with key?
-          <Link to={item.link} key={index}>
-            <MenuItem>
-              <img src={item.icon} alt={item.title} />
-              {item.title}
-            </MenuItem>
-          </Link>
+          // map with key? (anytime you use the loop, you should set the key)
+          <MenuButton item={item} key={index} />
         ))}
       </MenuWrapper>
     </Wrapper>
@@ -41,27 +40,6 @@ const Wrapper = styled.div`
 const MenuWrapper = styled.div`
   display: grid;
   /* use repeat for 3 columns: courses, tutorials, and pricing */
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(${props => props.count}, auto);
   gap: 30px;
-`
-
-const MenuItem = styled.div`
-  color: rgb(255, 255, 255, 0.7);
-  display: grid;
-  grid-template-columns: 24px auto;
-  gap: 10px;
-  align-items: center;
-  /* for clickable buttons add padding to all four sides */
-  padding: 10px;
-  /* apply transition for hover state */
-  transition: 0.3s ease-in-out;
-  /* to make the border consistent */
-  border-radius: 10px;
-
-  :hover {
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1),
-      inset 0px 0px 0px 0.5px rgba(255, 255, 255, 0.2);
-    /* note transition should always be added to the parent wrapper, not the hover state itself*/
-  }
 `
