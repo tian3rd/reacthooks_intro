@@ -1,25 +1,38 @@
 import { Link } from "gatsby"
 import styled from "styled-components"
-import React from "react"
+import React, { useState } from "react"
 import { menuData } from "../../data/menuData"
 import MenuButton from "../buttons/MenuButton"
 import MenuTooltip from "../tooltips/MenuTooltip"
 
 export default function Header() {
+  // search useState for more uses
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <Wrapper>
       {/* redirect logo to homepages */}
       <Link to="/">
         <img src="/images/logos/logo.svg" alt="LOGO" />
       </Link>
+      {/* here calc menu array length */}
       <MenuWrapper count={menuData.length}>
-        {menuData.map((item, index) => (
-          // map with key? (anytime you use the loop, you should set the key)
-          <MenuButton item={item} key={index} />
-        ))}
+        {menuData.map((item, index) =>
+          item.link === "/account" ? (
+            // conflict with default behavior;
+            <MenuButton
+              item={item}
+              key={index}
+              onClick={() => setIsOpen(!isOpen)}
+            />
+          ) : (
+            // map with key? (anytime you use the loop, you should set the key)
+            <MenuButton item={item} key={index} />
+          )
+        )}
       </MenuWrapper>
       {/* add tool to toggle states */}
-      <MenuTooltip />
+      <MenuTooltip isOpen={isOpen} />
     </Wrapper>
   )
 }
