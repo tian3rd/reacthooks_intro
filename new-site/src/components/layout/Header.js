@@ -66,7 +66,12 @@ export default function Header() {
         <HamburgerWrapper>
           <MenuButton
             // gatsby prefers internal link: use '/' intead for empty link
-            item={{ title: "", icon: "/images/icons/hamburger.svg", link: "/" }}
+            item={{
+              title: "",
+              //   icons folder renamed to icons-part
+              icon: "/images/icons-part/hamburger.svg",
+              link: "/",
+            }}
             // fix bug of hamburger not clickable by adding the onClick
             onClick={event => handleClick(event)}
           />
