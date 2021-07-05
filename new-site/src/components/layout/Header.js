@@ -38,6 +38,11 @@ export default function Header() {
             <MenuButton item={item} key={index} />
           )
         )}
+        <HamburgerWrapper>
+          <MenuButton
+            item={{ title: "", icon: "/images/icons/hamburger.svg", link: "" }}
+          />
+        </HamburgerWrapper>
       </MenuWrapper>
       {/* add tool to toggle states */}
       <MenuTooltip isOpen={isOpen} />
@@ -59,6 +64,14 @@ const Wrapper = styled.div`
   padding: 0 30px;
   /* center text and logo for grid columns */
   align-items: center;
+
+  @media (max-width: 768px) {
+    top: 30px;
+  }
+  @media (max-width: 450px) {
+    top: 20px;
+    padding: 0 20px;
+  }
 `
 
 const MenuWrapper = styled.div`
@@ -66,4 +79,21 @@ const MenuWrapper = styled.div`
   /* use repeat for 3 columns: courses, tutorials, and pricing */
   grid-template-columns: repeat(${props => props.count}, auto);
   gap: 30px;
+
+  @media (max-width: 768px) {
+    /* select all links 'a' tag of immediate children: the MenuButton has a, but not the Hamburger */
+    > a {
+      display: none;
+    }
+    /* for only one hamburger menu */
+    grid-template-columns: auto;
+  }
+`
+
+const HamburgerWrapper = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
 `

@@ -24,6 +24,11 @@ const Wrapper = styled.div`
 const Wave = styled.img`
   position: absolute;
   z-index: -1;
+
+  /* for larger screens */
+  @media (min-width: 1440px) {
+    width: 100%;
+  }
 `
 
 const Background = styled.div`

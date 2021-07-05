@@ -13,7 +13,7 @@ function HeroSection() {
       <ContentWrapper>
         <TextWrapper>
           <Title>
-            Survive
+            <span>Survive</span>
             <br /> and Thrive
           </Title>
           <Description>
@@ -56,6 +56,13 @@ const ContentWrapper = styled.div`
   padding: 200px 30px;
   display: grid;
   grid-template-columns: 360px auto;
+
+  /* for mobile devices of < 450px wide */
+  @media (max-width: 450px) {
+    grid-template-columns: auto;
+    gap: 60px;
+    padding: 150px 20px 250px;
+  }
 `
 
 const TextWrapper = styled.div`
@@ -86,6 +93,24 @@ const TextWrapper = styled.div`
 
 const Title = styled(H1)`
   color: ${themes.dark.text1};
+  background: linear-gradient(180deg, #730040 0%, #301cbe 100%);
+  background-clip: text;
+  /* for safari and chrome, use -webkit- prefix */
+  -webkit-background-clip: text;
+  color: transparent;
+
+  /* select span element */
+  span {
+    background: linear-gradient(180deg, #ffd7ff 0%, #ffb6ff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  /* set font sizes (to replace 'H1') for mobile devices; but also set H1 for mobile as 34px usually */
+  @media (max-width: 450px) {
+    font-size: 48px;
+  }
 `
 
 const Description = styled(MediumText)``
