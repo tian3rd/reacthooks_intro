@@ -15,6 +15,49 @@ export default function MockupAnimation() {
 
 const Wrapper = styled.div`
   position: relative;
+  /* distance between z=0 plane and the user */
+  perspective: 5000;
+  /* perspective-origin: top left; */
+
+  div {
+    /* add 3D transformation */
+    transform: rotateX(20deg) rotateY(10deg) rotateZ(3deg);
+    /* for rotations */
+    transform-origin: bottom left;
+  }
+
+  /* select all to apply animations */
+  * {
+    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  :hover div {
+    transform: rotateX(0deg) rotateY(0deg);
+    /* apply indivisually: '&' means self */
+    &.mockup1 {
+      transition-delay: 0.1s;
+      transform: translate(-30px, -30px);
+    }
+    &.mockup2 {
+      transition-delay: 0.2s;
+      transform: translate(0px, -30px);
+    }
+    &.mockup3 {
+      transition-delay: 0s;
+    }
+    &.mockup4 {
+      transition-delay: 0.1s;
+      transform: translate(-120px, 30px);
+    }
+    &.mockup5 {
+      transition-delay: 0.2s;
+      transform: translate(-60px, 30px);
+    }
+    /* nesting to change inside the already changed mockups indivisually */
+    :hover {
+      filter: brightness(150%) saturate(120%);
+    }
+  }
 
   .mockup1 {
     /* mockup1 copied from Figma */
